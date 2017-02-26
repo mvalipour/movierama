@@ -15,6 +15,13 @@ RSpec.describe 'login/logout/signup', type: :feature do
     expect(page).to have_signup_message
   end
 
+  it 'creates new user when sign up' do
+    page.sign_up
+
+    user = User.find(email: 'joe@movierama.dev')
+    expect(user).to_not be_nil
+  end
+
   it 'logs out' do
     page.sign_up
     page.logout
