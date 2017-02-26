@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Dear <%= @user.name %>!</p>
+    <p>
+      '<%= @voter.name %>' recently 
+      <%= @kind %>d your movie titled 
+      <b>'<%= @movie.title %>'</b>.
+    </p>
+    <p>Thanks! MovieRama team!</p>
+  </body>
+</html>

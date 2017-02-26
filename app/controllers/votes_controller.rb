@@ -16,7 +16,12 @@ class VotesController < ApplicationController
   private
 
   def _voter
-    VotingBooth.new(current_user, _movie)
+    voter = VotingBooth.new(current_user, _movie)
+    
+    # register event subscribers
+    voter.subscribe(AuthorNotifier.new, async: true)
+
+    voter
   end
 
   def _type

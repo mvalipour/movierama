@@ -52,6 +52,9 @@ gem 'omniauth' # Authentication
 gem 'omniauth-github'
 gem 'cancan'   # Authorisation
 
+# Use wisper for event handling
+gem 'wisper'
+gem 'wisper-celluloid' # support async: true
 
 # Debugger
 gem 'pry'

@@ -1,12 +1,14 @@
 # Cast or withdraw a vote on a movie
 class VotingBooth
+  include Wisper::Publisher
+
   def initialize(user, movie)
     @user  = user
     @movie = movie
   end
 
-  def vote(like_or_hate)
-    set = case like_or_hate
+  def vote(kind)
+    set = case kind
       when :like then @movie.likers
       when :hate then @movie.haters
       else raise
@@ -14,6 +16,9 @@ class VotingBooth
     unvote # to guarantee consistency
     set.add(@user)
     _update_counts
+
+    broadcast(:movie_vote_cast, @movie.id, @user.id, kind)
+
     self
   end
   

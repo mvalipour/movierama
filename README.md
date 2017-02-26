@@ -65,7 +65,11 @@ Login/signup use Omniauth with Github as a provider. If you're using Pow and the
 If not, you'll need to get your own OAuth tokens from Github and edit
 `.env` appropriately.
 
+#### Test emails locally
 
+In order to test email sending locally please use [MailCatcher](https://mailcatcher.me/).
+
+Development environment is configured to send emails to `smtp://127.0.0.1:1025`.
 
 ### Screenshot
 
