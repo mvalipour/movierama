@@ -9,5 +9,8 @@ class Ability
     end
 
     can :create, Movie
+    can :settings, User do |u|
+      u.id == user.id
+    end
   end
 end

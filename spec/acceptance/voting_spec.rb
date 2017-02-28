@@ -7,13 +7,17 @@ require 'support/with_user'
 RSpec.describe 'vote on movies', type: :feature do
 
   let(:page) { Pages::MovieList.new }
-
-  before do
-    author = User.create(
+  let(:notifications_enabled) { true }
+  let(:author) {
+    User.create(
       uid:  'null|12345',
       name: 'Bob',
-      email: 'bob@movierama.dev'
+      email: 'bob@movierama.dev',
+      notifications_enabled: notifications_enabled
     )
+  }
+
+  before do
     Movie.create(
       title:        'Empire strikes back',
       description:  'Who\'s scruffy-looking?',
@@ -85,6 +89,22 @@ RSpec.describe 'vote on movies', type: :feature do
       expect {
         page.hate('Empire strikes back')
       }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+
+    context 'but when notification is disabled' do
+      let(:notifications_enabled) { false }
+      
+      it 'doesnt notify the owner when like' do 
+        expect {
+          page.like('Empire strikes back')
+        }.to change { ActionMailer::Base.deliveries.count }.by(0)
+      end
+
+      it 'doesnt notify the owner when hate' do 
+        expect {
+          page.hate('Empire strikes back')
+        }.to change { ActionMailer::Base.deliveries.count }.by(0)
+      end
     end
   end
 
