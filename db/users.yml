@@ -4,9 +4,11 @@
 - name: Alice Wallace
   uid:  'null|alice'
   email: 'alice@movierama.dev'
+  notifications_enabled: true
 - name: Bob Ablleton
   uid:  'null|bob'
   email: 'bob@movierama.dev'
+  notifications_enabled: true
 - name: Charlie O'Callaghan
   uid:  'null|charlie'
   email: 'charlie@movierama.dev'

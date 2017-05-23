@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-md-12
+      .page-header
+        %h2 Settings #{@user.notifications_enabled}
+
+  .row
+    .col-md-9
+      = form_tag settings_path, { class: 'form', role: 'form' } do
+        .form-group{ class: @validator.class_for(:name) }
+          %label{ for:  'name' } Name
+          %input.form-control{ name: 'name', value: @user.name  }
+        .form-group{ class: @validator.class_for(:notifications_enabled) }
+          %input{ type: :checkbox, name: 'notifications_enabled', checked: @user.notifications_enabled  }
+          %label{ for:  'notifications_enabled' } Notifications Enabled
+        .form-group
+          = submit_tag 'Save', class: 'btn btn-primary'

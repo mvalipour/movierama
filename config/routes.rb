@@ -11,5 +11,8 @@ Rails.application.routes.draw do
     resources :movies, only: %(index), controller: 'movies'
   end
 
+  get 'settings', to: 'settings#index'
+  post 'settings', to: 'settings#update'
+
   root 'movies#index'
 end
